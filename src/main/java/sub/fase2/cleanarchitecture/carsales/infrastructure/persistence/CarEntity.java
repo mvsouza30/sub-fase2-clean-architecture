@@ -13,13 +13,15 @@ public class CarEntity {
     private String cor;
     private int ano;
     private double preco;
+    private String descricao;
 
-    public CarEntity(String marca, String modelo, String cor, int ano, double preco){
+    public CarEntity(String marca, String modelo, String cor, int ano, double preco, String descricao){
         this.marca = marca;
         this.modelo = modelo;
         this.cor = cor;
         this.ano = ano;
         this.preco = preco;
+        this.descricao = descricao;
     }
 
     public Long getId(){
@@ -66,9 +68,13 @@ public class CarEntity {
         return preco;
     }
 
-    public void setPreco(){
+    public void setPreco(double preco){
         this.preco = preco;
     }
+
+    public String getDescricao() { return descricao; }
+
+    public void setDescricao(String descricao) { this.descricao = descricao; }
 
 
 }

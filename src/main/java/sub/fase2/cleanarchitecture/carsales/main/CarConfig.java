@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import sub.fase2.cleanarchitecture.carsales.application.gateways.CarGateway;
 import sub.fase2.cleanarchitecture.carsales.application.usecases.CreateCarUseCase;
+import sub.fase2.cleanarchitecture.carsales.application.usecases.EditCarUseCase;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.controllers.CarDTOMapper;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.gateways.CarEntityMapper;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.gateways.CarRepositoryGateway;
@@ -31,4 +32,7 @@ public class CarConfig {
     CarDTOMapper carDTOMapper() {
         return new CarDTOMapper();
     }
+
+    @Bean
+    EditCarUseCase editCarUseCase (CarGateway carGateway){ return new EditCarUseCase(carGateway); }
 }

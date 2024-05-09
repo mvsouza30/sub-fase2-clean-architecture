@@ -4,4 +4,6 @@ import sub.fase2.cleanarchitecture.carsales.domain.entity.Car;
 
 public interface CarGateway {
     Car createCar(Car car);
+    Car editCar(Long carId, Car updatedCar);
+    Car getCarById(Long carId);
 }

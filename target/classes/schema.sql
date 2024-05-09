@@ -4,5 +4,6 @@ CREATE TABLE IF NOT EXISTS `cars` (
   modelo varchar(25) not null,
   cor varchar(10) not null,
   ano int not null,
-  preco double not null
+  preco double not null,
+  descricao varchar(255) not null
 );
