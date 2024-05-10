@@ -15,6 +15,7 @@ public class EditCarUseCase {
         if (existingCar == null) {
             return null;
         }
+
         return carGateway.editCar(carId, updatedCar);
 
     }

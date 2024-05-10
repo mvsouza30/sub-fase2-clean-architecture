@@ -36,7 +36,7 @@ public class CarEntity {
         return marca;
     }
 
-    public void setMarca(){
+    public void setMarca(String marca){
         this.marca = marca;
     }
 
@@ -44,7 +44,7 @@ public class CarEntity {
         return modelo;
     }
 
-    public void setModelo(){
+    public void setModelo(String modelo){
         this.modelo = modelo;
     }
 
@@ -52,7 +52,7 @@ public class CarEntity {
         return cor;
     }
 
-    public void setCor(){
+    public void setCor(String cor){
         this.cor = cor;
     }
 
@@ -60,7 +60,7 @@ public class CarEntity {
         return ano;
     }
 
-    public void setAno(){
+    public void setAno(int ano){
         this.ano = ano;
     }
 
@@ -75,6 +75,4 @@ public class CarEntity {
     public String getDescricao() { return descricao; }
 
     public void setDescricao(String descricao) { this.descricao = descricao; }
-
-
 }

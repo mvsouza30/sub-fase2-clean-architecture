@@ -12,7 +12,8 @@ public class CarRepositoryGateway implements CarGateway {
     private final CarRepository carRepository;
     private final CarEntityMapper carEntityMapper;
 
-    public CarRepositoryGateway(CarRepository carRepository, CarEntityMapper carEntityMapper){
+
+    public CarRepositoryGateway(CarRepository carRepository, CarEntityMapper carEntityMapper) {
         this.carRepository = carRepository;
         this.carEntityMapper = carEntityMapper;
     }
@@ -35,7 +36,10 @@ public class CarRepositoryGateway implements CarGateway {
         if (existingEntity == null) {
             return null;
         }
-
+        existingEntity.setMarca(updatedCar.marca());
+        existingEntity.setModelo(updatedCar.modelo());
+        existingEntity.setCor(updatedCar.cor());
+        existingEntity.setAno(updatedCar.ano());
         existingEntity.setPreco(updatedCar.preco());
         existingEntity.setDescricao(updatedCar.descricao());
 
