@@ -1,10 +1,12 @@
 package sub.fase2.cleanarchitecture.carsales.infrastructure.gateways;
 
+import sub.fase2.cleanarchitecture.carsales.application.contracts.CarCollection;
 import sub.fase2.cleanarchitecture.carsales.application.gateways.CarGateway;
 import sub.fase2.cleanarchitecture.carsales.domain.entity.Car;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.CarEntity;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.CarRepository;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 public class CarRepositoryGateway implements CarGateway {
@@ -47,5 +49,10 @@ public class CarRepositoryGateway implements CarGateway {
 
         logger.info("Editando carro com ID: " + carId + ", Novo carro: " + updatedCar);
         return carEntityMapper.toDomainObj(savedEntity);
+    }
+
+    public CarCollection getAllCarsOrderedByPrice() {
+        List<CarEntity> carEntities = carRepository.findAllOrderByPriceAsc();
+        return carEntityMapper.toCarCollection(carEntities);
     }
 }

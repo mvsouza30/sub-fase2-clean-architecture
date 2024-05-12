@@ -14,8 +14,8 @@ import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.SellCarRe
 public class SellCarConfig {
 
     @Bean
-    SellCarUseCase sellCarUseCase(SellCarGateway sellCarGateway, CarRepository carRepository){
-        return new SellCarUseCase(sellCarGateway, carRepository);
+    SellCarUseCase sellCarUseCase(SellCarGateway sellCarGateway, CarRepository carRepository, SellCarRepository sellCarRepository){
+        return new SellCarUseCase(sellCarGateway, carRepository, sellCarRepository);
     }
 
     @Bean

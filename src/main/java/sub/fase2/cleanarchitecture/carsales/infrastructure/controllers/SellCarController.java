@@ -1,10 +1,8 @@
 package sub.fase2.cleanarchitecture.carsales.infrastructure.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import sub.fase2.cleanarchitecture.carsales.application.contracts.SellCollection;
 import sub.fase2.cleanarchitecture.carsales.application.usecases.SellCarUseCase;
 import sub.fase2.cleanarchitecture.carsales.domain.entity.Sell;
 
@@ -25,5 +23,11 @@ public class SellCarController {
         Sell sellBusinessObj = sellCarDTOMapper.toSell(request);
         Sell sell = sellCarUseCase.createSell(sellBusinessObj);
         return sellCarDTOMapper.toResponse(sell);
+    }
+
+    @Operation(summary = "Listar carros vendidos", description = "Este endpoint permite listar todos os carros vendidos, ordenados por preço.")
+    @GetMapping("/sold")
+    public SellCollection getAllSoldCars() {
+        return sellCarUseCase.getAllSoldCarsOrderedByPrice();
     }
 }
