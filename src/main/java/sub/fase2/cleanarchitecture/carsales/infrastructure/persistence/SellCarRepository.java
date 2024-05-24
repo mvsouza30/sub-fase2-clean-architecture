@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface SellCarRepository extends CrudRepository<SellEntity, Long> {
 
-    @Query("SELECT * FROM carsales c ORDER BY c.preco ASC")
+    @Query("SELECT * FROM pre_sales c ORDER BY c.preco ASC")
     List<SellEntity> findAllOrderByPriceAsc();
 }

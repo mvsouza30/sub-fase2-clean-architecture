@@ -30,7 +30,7 @@ public class SellCarUseCase {
     public SellCollection getAllSoldCarsOrderedByPrice() {
         List<Sell> soldCars = sellCarRepository.findAllOrderByPriceAsc().stream()
                 .map(sell -> new Sell(sell.getCpf(), sell.getData(), sell.getMarca(), sell.getModelo(),
-                        sell.getCor(), sell.getAno(), sell.getPreco(), sell.getDescricao()))
+                        sell.getCor(), sell.getAno(), sell.getPreco(), sell.getDescricao(), sell.getCod_vendas(), sell.getStatus()))
                 .collect(Collectors.toList());
         return new SellCollection(soldCars);
     }

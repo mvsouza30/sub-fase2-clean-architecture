@@ -3,7 +3,7 @@ package sub.fase2.cleanarchitecture.carsales.infrastructure.persistence;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("CARSALES")
+@Table("PRE_SALES")
 public class SellEntity {
 
     @Id
@@ -16,8 +16,11 @@ public class SellEntity {
     private int ano;
     private double preco;
     private String descricao;
+    private String cod_vendas;
+    private String status;
 
-    public SellEntity(String cpf, String data, String marca, String modelo, String cor, int ano, double preco, String descricao){
+    public SellEntity(String cpf, String data, String marca, String modelo, String cor, int ano,
+                      double preco, String descricao, String cod_vendas, String status){
         this.cpf = cpf;
         this.data = data;
         this.marca = marca;
@@ -26,6 +29,8 @@ public class SellEntity {
         this.ano = ano;
         this.preco = preco;
         this.descricao = descricao;
+        this.cod_vendas = cod_vendas;
+        this.status = status;
     }
 
     public Long getId(){
@@ -78,4 +83,10 @@ public class SellEntity {
 
     public String getDescricao() { return descricao; }
     public void setDescricao(String descricao) { this.descricao = descricao; }
+
+    public String getCod_vendas() { return cod_vendas; }
+    public void setCod_vendas(String cod_vendas){ this.cod_vendas = cod_vendas; }
+
+    public String getStatus(){ return status; }
+    public void setStatus(){ this.status = status; }
 }
