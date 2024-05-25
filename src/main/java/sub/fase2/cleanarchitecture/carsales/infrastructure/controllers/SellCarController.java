@@ -1,8 +1,10 @@
 package sub.fase2.cleanarchitecture.carsales.infrastructure.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sub.fase2.cleanarchitecture.carsales.application.contracts.SellCollection;
+import sub.fase2.cleanarchitecture.carsales.application.usecases.PaymentProcessingService;
 import sub.fase2.cleanarchitecture.carsales.application.usecases.SellCarUseCase;
 import sub.fase2.cleanarchitecture.carsales.domain.entity.Sell;
 
@@ -11,13 +13,15 @@ import sub.fase2.cleanarchitecture.carsales.domain.entity.Sell;
 public class SellCarController {
     private SellCarUseCase sellCarUseCase;
     private final SellCarDTOMapper sellCarDTOMapper;
+    private final PaymentProcessingService paymentProcessingService;
 
-    public SellCarController(SellCarUseCase sellCarUseCase, SellCarDTOMapper sellCarDTOMapper){
+    public SellCarController(SellCarUseCase sellCarUseCase, SellCarDTOMapper sellCarDTOMapper, PaymentProcessingService paymentProcessingService){
         this.sellCarUseCase = sellCarUseCase;
         this.sellCarDTOMapper = sellCarDTOMapper;
+        this.paymentProcessingService = paymentProcessingService;
     }
 
-    @Operation(summary = "Vender um carro", description = "Este endpoint permite vender um carro.")
+    @Operation(summary = "Sistema de Pré-vendas", description = "Vamos enviar os dados para análise da financeira.")
     @PostMapping
     CreateSellCarResponse sellCar(@RequestBody CreateSellCarRequest request){
         Sell sellBusinessObj = sellCarDTOMapper.toSell(request);
@@ -29,5 +33,12 @@ public class SellCarController {
     @GetMapping("/sold")
     public SellCollection getAllSoldCars() {
         return sellCarUseCase.getAllSoldCarsOrderedByPrice();
+    }
+
+    @Operation(summary = "Processa Pagamento", description = "Financeira recebe a proposta de compra/venda de veículos e confirma pagamento")
+    @PostMapping("/processPayment")
+    public ResponseEntity<String> processPayment(@RequestParam String codVendas) {
+        String result = paymentProcessingService.processPayment(codVendas);
+        return ResponseEntity.ok(result);
     }
 }

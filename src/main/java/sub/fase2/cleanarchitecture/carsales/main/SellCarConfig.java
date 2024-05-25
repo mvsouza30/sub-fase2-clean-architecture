@@ -3,12 +3,14 @@ package sub.fase2.cleanarchitecture.carsales.main;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import sub.fase2.cleanarchitecture.carsales.application.gateways.SellCarGateway;
+import sub.fase2.cleanarchitecture.carsales.application.usecases.PaymentProcessingService;
 import sub.fase2.cleanarchitecture.carsales.application.usecases.SellCarUseCase;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.controllers.SellCarDTOMapper;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.gateways.SellEntityMapper;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.gateways.SellRepositoryGateway;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.CarRepository;
 import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.SellCarRepository;
+import sub.fase2.cleanarchitecture.carsales.infrastructure.persistence.SoldCarRepository;
 
 @Configuration
 public class SellCarConfig {
@@ -32,4 +34,9 @@ public class SellCarConfig {
     SellCarDTOMapper sellCarDTOMapper(){
         return new SellCarDTOMapper();
     }
+
+    @Bean
+    PaymentProcessingService paymentProcessingService(SellCarRepository sellCarRepository, SoldCarRepository soldCarRepository, CarRepository carRepository)
+    { return new PaymentProcessingService (sellCarRepository, soldCarRepository, carRepository);}
+
 }

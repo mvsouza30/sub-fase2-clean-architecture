@@ -5,3 +5,5 @@ import sub.fase2.cleanarchitecture.carsales.domain.entity.Sell;
 public interface SellCarGateway {
     Sell sellCar(Sell sell);
 }
+
+

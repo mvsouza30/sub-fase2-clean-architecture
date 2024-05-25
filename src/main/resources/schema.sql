@@ -32,5 +32,6 @@ CREATE TABLE IF NOT EXISTS `sold_cars` (
   ano int not null,
   preco double not null,
   descricao varchar(255) not null,
-  cod_vendas varchar(25) not null
+  cod_vendas varchar(25) not null,
+  status varchar(15) not null
 );
