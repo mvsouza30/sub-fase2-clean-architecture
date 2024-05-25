@@ -10,7 +10,7 @@ public interface SoldCarRepository extends CrudRepository<SoldCarEntity, Long> {
     @Override
     Optional<SoldCarEntity> findById(Long id);
 
-    @Override
+    @Query("SELECT * FROM sold_cars ORDER BY preco ASC")
     List<SoldCarEntity> findAll();
 
     @Query("SELECT * FROM sold_cars WHERE cod_vendas = :cod_vendas")
