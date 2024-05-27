@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carsales-db-deployment
+  namespace: carsales-ns
+spec:
+  selector:
+    matchLabels:
+      app: carsales-db
+  replicas: 3
+  template:
+    metadata:
+      labels:
+          app: carsales-db
+    spec:
+      containers:
+        - image: mvsouza30/db-prod:v1
+          name: carsales-db
+          ports:
+            - containerPort: 5436
+          env:
+            - name: SPRING_DATASOURCE_PORTS
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_PORTS
+            - name: SPRING_DATASOURCE_SERVER_APP_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_SERVER_APP_PORT
+            - name: SPRING_DATASOURCE_SERVER_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_SERVER_PROTOCOL
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: db-password
+            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
+            - name: SPRING_DATASOURCE_DATABASE_PORTS
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_DATABASE_PORTS

@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: carsales-app-service
+  namespace: carsales-ns
+spec:
+  ports:
+    - name: carsales-app
+      port: 8080
+      targetPort: 8080
+  selector:
+    app: carsales-app
+  type: ClusterIP
