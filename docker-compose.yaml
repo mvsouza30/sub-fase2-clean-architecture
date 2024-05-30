@@ -1,0 +1,41 @@
+version: '3'
+
+networks:
+  carsales-network:
+    external: false
+
+services:
+  app:
+    image: mvsouza30/app-prod:v1
+    container_name: carsales-app
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      - db
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://producao_dbhost:5432/carsales-prod-db
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - SERVER_PORT=8080
+
+    networks:
+      - carsales-network
+
+  db:
+    image: mvsouza30/db-prod:v1
+    restart: always
+    container_name: producao_dbhost
+    environment:
+      - POSTGRES_DB=carsales-prod-db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5436:5436"
+
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+
+    networks:
+      - carsales-network

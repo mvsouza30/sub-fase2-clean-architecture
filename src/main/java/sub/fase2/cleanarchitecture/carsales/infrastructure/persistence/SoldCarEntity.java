@@ -3,7 +3,7 @@ package sub.fase2.cleanarchitecture.carsales.infrastructure.persistence;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Table;
 
-@Table("SOLD_CARS")
+@Table("sold_cars")
 public class SoldCarEntity {
     @Id
     private Long id;

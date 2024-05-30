@@ -2,7 +2,6 @@ package sub.fase2.cleanarchitecture.carsales.infrastructure.controllers;
 
 import sub.fase2.cleanarchitecture.carsales.domain.entity.Car;
 
-import java.time.LocalDateTime;
 
 public class CarDTOMapper {
     CreateCarResponse toResponse(Car car) {

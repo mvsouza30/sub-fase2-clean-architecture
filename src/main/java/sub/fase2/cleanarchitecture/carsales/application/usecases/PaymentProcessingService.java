@@ -41,8 +41,10 @@ public class PaymentProcessingService {
                     sellEntity.getCod_vendas(),
                     sellEntity.getStatus()
             );
+            soldCarEntity.setStatus("Aprovado");
             soldCarRepository.save(soldCarEntity);
             sellCarRepository.delete(sellEntity);
+            soldCarRepository.findAllOrderByPriceAsc();
 
             return "Pagamento aprovado. Venda concluída.";
         } else {

@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: carsales-app-deployment
+  namespace: carsales-ns
+spec:
+  selector:
+    matchLabels:
+      greeting: carsales-app
+      version: one
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        greeting: carsales-app
+        version: one
+    spec:
+      containers:
+        - name: carsales-app
+          image: "mvsouza30/app-prod:v1"
+          ports:
+            - containerPort: 8080
+          env:
+            - name: "PORT"
+              value: "8080"
+            - name: SPRING_DATASOURCE_TARGET_PORT
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_TARGET_PORT
+            - name: SPRING_DATASOURCE_SERVER_PROTOCOL
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_SERVER_PROTOCOL
+            - name: SPRING_DATASOURCE_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_URL
+            - name: SPRING_DATASOURCE_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: db-username
+            - name: SPRING_DATASOURCE_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: db-secrets
+                  key: db-password
+            - name: SPRING_DATASOURCE_DATABASE_PORTS
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_DATABASE_PORTS
