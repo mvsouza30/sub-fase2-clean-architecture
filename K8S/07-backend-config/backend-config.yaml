@@ -1,0 +1,14 @@
+apiVersion: cloud.google.com/v1
+kind: BackendConfig
+metadata:
+  name: carsales-backendconfig
+  namespace:  carsales-ns
+spec:
+  healthCheck:
+    checkIntervalSec: 20
+    timeoutSec: 30
+    healthyThreshold: 3
+    unhealthyThreshold: 3
+    type: HTTP
+    requestPath: /cars
+    port: 8080

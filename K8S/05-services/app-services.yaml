@@ -4,10 +4,11 @@ metadata:
   name: carsales-app-service
   namespace: carsales-ns
 spec:
+  type: ClusterIP
+  selector:
+    greeting: carsales-app
+    version: one
   ports:
-    - name: carsales-app
+    - protocol: TCP
       port: 8080
       targetPort: 8080
-  selector:
-    app: carsales-app
-  type: ClusterIP

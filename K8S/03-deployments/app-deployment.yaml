@@ -6,24 +6,28 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: carsales-app
+      greeting: carsales-app
+      version: one
   replicas: 3
   template:
     metadata:
       labels:
-        app: carsales-app
+        greeting: carsales-app
+        version: one
     spec:
       containers:
-        - image: mvsouza30/app-prod:v1
-          name: carsales-app
+        - name: carsales-app
+          image: "mvsouza30/app-prod:v1"
           ports:
             - containerPort: 8080
           env:
-            - name: SPRING_DATASOURCE_SERVER_APP_PORT
+            - name: "PORT"
+              value: "8080"
+            - name: SPRING_DATASOURCE_TARGET_PORT
               valueFrom:
                 configMapKeyRef:
                   name: carsales-configmap
-                  key: SPRING_DATASOURCE_SERVER_APP_PORT
+                  key: SPRING_DATASOURCE_TARGET_PORT
             - name: SPRING_DATASOURCE_SERVER_PROTOCOL
               valueFrom:
                 configMapKeyRef:
@@ -44,11 +48,6 @@ spec:
                 secretKeyRef:
                   name: db-secrets
                   key: db-password
-            - name: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-              valueFrom:
-                configMapKeyRef:
-                  name: carsales-configmap
-                  key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
             - name: SPRING_DATASOURCE_DATABASE_PORTS
               valueFrom:
                 configMapKeyRef:

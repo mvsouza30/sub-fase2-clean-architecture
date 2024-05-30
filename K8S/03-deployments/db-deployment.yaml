@@ -6,29 +6,34 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: carsales-db
+      greeting: carsales-db
+      version: two
   replicas: 3
   template:
     metadata:
       labels:
-          app: carsales-db
+        greeting: carsales-db
+        version: two
     spec:
       containers:
-        - image: mvsouza30/db-prod:v1
-          name: carsales-db
-          ports:
-            - containerPort: 5436
+        - name: carsales-db
+          image: "mvsouza30/db-prod:v1"
           env:
+            - name: SPRING_DATASOURCE_DATABASE_PORTS
+              valueFrom:
+                configMapKeyRef:
+                  name: carsales-configmap
+                  key: SPRING_DATASOURCE_DATABASE_PORTS
             - name: SPRING_DATASOURCE_PORTS
               valueFrom:
                 configMapKeyRef:
                   name: carsales-configmap
                   key: SPRING_DATASOURCE_PORTS
-            - name: SPRING_DATASOURCE_SERVER_APP_PORT
+            - name: SPRING_DATASOURCE_TARGET_PORT
               valueFrom:
                 configMapKeyRef:
                   name: carsales-configmap
-                  key: SPRING_DATASOURCE_SERVER_APP_PORT
+                  key: SPRING_DATASOURCE_TARGET_PORT
             - name: SPRING_DATASOURCE_SERVER_PROTOCOL
               valueFrom:
                 configMapKeyRef:
@@ -54,8 +59,3 @@ spec:
                 configMapKeyRef:
                   name: carsales-configmap
                   key: SPRING_DATASOURCE_DRIVER_CLASS_NAME
-            - name: SPRING_DATASOURCE_DATABASE_PORTS
-              valueFrom:
-                configMapKeyRef:
-                  name: carsales-configmap
-                  key: SPRING_DATASOURCE_DATABASE_PORTS

@@ -4,10 +4,11 @@ metadata:
   name: carsales-db-service
   namespace: carsales-ns
 spec:
+  type: ClusterIP
   selector:
-    app: carsales-db
+    greeting: carsales-db
+    version: two
   ports:
     - protocol: TCP
       port: 5432
       targetPort: 5432
-  type: ClusterIP

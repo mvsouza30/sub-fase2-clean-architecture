@@ -6,9 +6,7 @@ networks:
 
 services:
   app:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    image: mvsouza30/app-prod:v1
     container_name: carsales-app
     restart: always
     ports:

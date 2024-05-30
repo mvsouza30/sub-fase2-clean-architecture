@@ -4,15 +4,13 @@ metadata:
   name: carsales-ingress
   namespace: carsales-ns
   annotations:
-    spec.ingressClassName: "gce"
-    cloud.google.com/neg: '{"ingress": true}'
+    kubernetes.io/ingress.class: "gce"
 spec:
   rules:
-    - host:
-      http:
+    - http:
         paths:
           - path: /swagger-ui/index.html
-            pathType: Prefix
+            pathType: ImplementationSpecific
             backend:
               service:
                 name: carsales-app-service
