@@ -1,8 +1,8 @@
-FROM amazoncorretto:17
+FROM openjdk:17
 
-WORKDIR /opt/app
+WORKDIR /app
 
-COPY target/carsales-0.0.1-SNAPSHOT.jar* /opt/app
+COPY target/carsales-0.0.1-SNAPSHOT.jar* /app
 
 USER nobody
 

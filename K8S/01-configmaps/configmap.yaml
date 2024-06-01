@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: carsales-configmap
+  #namespace: carsales-ns
+data:
+  SPRING_DATASOURCE_URL: jdbc:postgresql://carsales-db-service:5432/carsales-prod-db
+  SPRING_DATASOURCE_DRIVER_CLASS_NAME: org.postgresql.Driver
+  SPRING_DATASOURCE_SERVER_APP_PORT: "80"
+  SPRING_DATASOURCE_SERVER_PROTOCOL: tcp
+  SPRING_DATASOURCE_DATABASE_PORTS: "5432:5432"
+  SPRING_DATASOURCE_PORTS: "8080:8080"
