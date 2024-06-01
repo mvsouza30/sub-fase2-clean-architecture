@@ -62,3 +62,7 @@ Para acessar o Swagger da aplicação, acesse o caminho [http://ip_externo_do_al
 Caso queira uma referência do projeto, acesse a imagem 'infra.jpg' contida no diretório raíz também
 
 E pronto, é isso!
+
+Vídeo completo no Youtube:
+https://www.youtube.com/watch?v=F9nTlwc4bnI&ab_channel=MarcosSouza
+
