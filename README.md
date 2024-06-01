@@ -42,15 +42,13 @@ Para executar a aplicação completa, navegue ao diretório 'K8S' e execute um s
 Observe que os diretórios estão enumerados e categorizados, você pode seguir a sequência. 
 
 ```bash
-kubectl apply -f 01-namespaces/namespace.yaml
-kubectl apply -f 02-configmaps/configmap.yaml
-kubectl apply -f 03-deployments/app-deployment.yaml
-kubectl apply -f 03-deployments/db-deployment.yaml
-kubectl apply -f 04-secrets/db-secrets.yaml
-kubectl apply -f 05-services/app-services.yaml
-kubectl apply -f 05-services/db-services.yaml
-kubectl apply -f 06-ingress/ingress.yaml
-kubectl apply -f 07-backend-config/backend-config.yaml
+kubectl apply -f 01-configmaps/configmap.yaml
+kubectl apply -f 02-deployments/app-deployment.yaml
+kubectl apply -f 02-deployments/db-deployment.yaml
+kubectl apply -f 03-secrets/db-secrets.yaml
+kubectl apply -f 04-services/app-services.yaml
+kubectl apply -f 04-services/db-services.yaml
+kubectl apply -f 05-ingress/ingress.yaml
 ```
 (Trabalhoso, né? Mas será legal quando precisar evoluir recursos ;)
 
